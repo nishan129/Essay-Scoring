@@ -27,3 +27,23 @@ Contributions to AES are welcome! Whether you're a seasoned NLP expert, a machin
 Ready to revolutionize essay grading? Dive into our documentation to set up AES in your educational environment. Whether you're an educator, a student, or a developer, AES empowers you to streamline the essay grading process and unlock the full potential of automated assessment.
 
 Join the AES community today and embark on a journey to redefine how essays are evaluated!
+
+
+## How to run:
+
+```bash
+conda create -p venv1 python==3.10.0 -y
+```
+
+```bash
+conda activate venv1/
+```
+
+```bash
+pip install -r requirements.txt
+```
+
+```bash
+python app.py
+```
+
