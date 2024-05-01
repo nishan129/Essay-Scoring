@@ -1,3 +1,7 @@
 pandas 
 from_root
+pymongo
+certifi
+
+
 -e .
