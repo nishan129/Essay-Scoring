@@ -34,7 +34,7 @@ class ExtractData:
         """
         try:
             if database_name is None:
-                collection_name = self.mongodb_client.database[collection_name]
+                collection = self.mongodb_client.database[collection_name]
             else:
                 collection = self.mongodb_client[database_name][collection_name]
 

@@ -2,6 +2,6 @@ pandas
 from_root
 pymongo
 certifi
-
+sklearn
 
 -e .
