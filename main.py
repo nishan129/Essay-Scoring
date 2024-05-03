@@ -7,3 +7,4 @@ if __name__ == '__main__':
     logging.info("Project is starting...")
     train = TrainingPipeline()
     train.run_pipeline()
+    logging.info("Project done")
