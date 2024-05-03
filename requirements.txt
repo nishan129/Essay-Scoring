@@ -3,5 +3,6 @@ from_root
 pymongo
 certifi
 sklearn
+PyYAML
 
 -e .

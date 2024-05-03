@@ -1,0 +1,8 @@
+columns:
+  - full_text
+  - score
+
+
+dtype:
+  - O
+  - int64

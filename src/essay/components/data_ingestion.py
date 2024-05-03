@@ -61,14 +61,16 @@ class DataIngestion:
     
     def initiate_data_ingestion(self) -> DataIngestionArtifact:
         try:
+            logging.info("Start initiate_data_ingestion function on DataIngestion class")
             data = self.extract_data_into_feature_store()
             self.split_data(data)
             
             data_ingestion_artifact = DataIngestionArtifact(
                 training_file_path=self.data_ingestion_config.training_file_path,
-                test_file_path=self.data_ingestion_config.test_file_path
+                test_file_path=self.data_ingestion_config.test_file_path,
+                feature_store_path=self.data_ingestion_config.feature_store_path
             )
-            
+            logging.info(f"Data ingestion artifact is {data_ingestion_artifact}")
             return data_ingestion_artifact
         except Exception as e:
             raise ModelException(e,sys)
