@@ -1,10 +1,11 @@
 from src.essay.components.data_ingestion import DataIngestion
 from src.essay.exception import ModelException
 from src.essay.logger import logging
-from src.essay.entity.config_entity import DataIngestionConfig, TrainingPipelineConfig, DataValidationConfig
-from src.essay.entity.artifact_entity import DataIngestionArtifact , DataValidationArtifact
+from src.essay.entity.config_entity import (DataIngestionConfig, TrainingPipelineConfig, DataValidationConfig,DataTransformationConfig)
+from src.essay.entity.artifact_entity import( DataIngestionArtifact , DataValidationArtifact, DataTransformationArtifact)
 from src.essay.components.data_validation import DataValidation
 import sys
+from src.essay.components.data_transformation import DataTransformation
 
 
 class TrainingPipeline:
@@ -36,9 +37,24 @@ class TrainingPipeline:
         except Exception as e:
             raise ModelException(e,sys)
         
+        
+    def start_data_transformation(self, data_ingestion_artifact:DataIngestionArtifact) -> DataTransformationArtifact:
+        try:
+            logging.info("Data Transformation start")
+            data_transformation_config = DataTransformationConfig(training_pipeline_config=self.training_pipeline_config)
+            data_transformation = DataTransformation(data_transformation_config=data_transformation_config,
+                                                     data_ingestion_artifact=data_ingestion_artifact)
+            data_transformation_artifact = data_transformation.initiate_data_transformation()
+            
+            logging.info(f"Data Transformation is complete and directory is {data_transformation_artifact}")
+            return data_transformation_artifact
+        except Exception as e:
+            raise ModelException(e,sys)
+        
     def run_pipeline(self):
         try:
             data_ingestion_artifact = self.start_data_ingestion()
             data_validation_artifact = self.start_data_validation(data_ingestion_artifact=data_ingestion_artifact)
+            data_transformation_artifact = self.start_data_transformation(data_ingestion_artifact=data_ingestion_artifact)
         except Exception as e:
             raise ModelException(e,sys)

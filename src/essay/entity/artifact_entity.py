@@ -11,3 +11,10 @@ class DataIngestionArtifact:
 @dataclass
 class DataValidationArtifact:
     status_file_path : Path
+    
+
+@dataclass
+class DataTransformationArtifact:
+    train_data_path: Path
+    test_data_path: Path
+    tokenizer_file_path: Path

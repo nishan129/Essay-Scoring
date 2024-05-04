@@ -2,7 +2,14 @@ pandas
 from_root
 pymongo
 certifi
-sklearn
+scikit-learn
 PyYAML
-
+transformers
+python-box
+matplotlib
+Seaborn
+datasets
+sentencepiece
+transformers[torch]
+transformers[sentencepiece]
 -e .

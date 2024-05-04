@@ -9,6 +9,14 @@ DATA_NAME = "data.csv"
 TRAIN_DATA_NAME = "train.csv"
 TEST_DATA_NAME = "test.csv"
 DATA_VALIDATION_FILE_NAME = "status.txt"
+TOKENIZER_NAME = "tokenizer.pkl"
+TRAIN_TRANSFORM_DATA = "train"
+TEST_TRANSFORM_DATA = "test"
+
+
+
+
+MODEL_NAME: str = "microsoft/deberta-v3-large"
 
 """
 Data ingestion type constant created with constant var name
@@ -26,3 +34,10 @@ Data Validation type constant created with constant var name
 DATA_VALIDATION_DIR_NAME: str = "data_validation"
 DATA_DISTRIBUTION_DIR_NAME: str = "logdir"
 DATA_VALIDATION_IMG_SAVE : str = "data_distribution"
+
+
+"""
+Data Transformation type constant created with constant var name
+"""
+DATA_TRANSFORMATION_DIR_NAME: str = "data_transformation"
+DATA_TRANSFOMRED_DATA_DIR_NAME: str = "trasformed_data"
