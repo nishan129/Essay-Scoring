@@ -1,11 +1,12 @@
 from src.essay.components.data_ingestion import DataIngestion
 from src.essay.exception import ModelException
 from src.essay.logger import logging
-from src.essay.entity.config_entity import (DataIngestionConfig, TrainingPipelineConfig, DataValidationConfig,DataTransformationConfig)
-from src.essay.entity.artifact_entity import( DataIngestionArtifact , DataValidationArtifact, DataTransformationArtifact)
+from src.essay.entity.config_entity import (DataIngestionConfig, TrainingPipelineConfig, DataValidationConfig,DataTransformationConfig, ModelTrainerConfig)
+from src.essay.entity.artifact_entity import( DataIngestionArtifact , DataValidationArtifact, DataTransformationArtifact, ModelTrainerArtifact)
 from src.essay.components.data_validation import DataValidation
 import sys
 from src.essay.components.data_transformation import DataTransformation
+from src.essay.components.model_trainer import ModelTrainer
 
 
 class TrainingPipeline:
@@ -51,10 +52,22 @@ class TrainingPipeline:
         except Exception as e:
             raise ModelException(e,sys)
         
+        
+    def start_model_trainer(self, data_transformation_artifact:DataTransformationArtifact):
+        try:
+            logging.info("Starting Model Trainer...")
+            model_trainer_config = ModelTrainerConfig(training_pipeline_config=self.training_pipeline_config)
+            
+            model_trainer = ModelTrainer(model_trainer_config=model_trainer_config, data_transformation_artifact=data_transformation_artifact)
+            model_trainer.initiate_trainer()
+        except Exception as e: 
+            raise ModelException(e,sys)    
+    
     def run_pipeline(self):
         try:
             data_ingestion_artifact = self.start_data_ingestion()
             data_validation_artifact = self.start_data_validation(data_ingestion_artifact=data_ingestion_artifact)
             data_transformation_artifact = self.start_data_transformation(data_ingestion_artifact=data_ingestion_artifact)
+            model_trainer_artifact = self.start_model_trainer(data_transformation_artifact=data_transformation_artifact)
         except Exception as e:
             raise ModelException(e,sys)

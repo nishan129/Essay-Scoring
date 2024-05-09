@@ -17,7 +17,7 @@ class Tokeinze(object):
         try:
             ds = Dataset.from_dict({
                 "full_text": [tf for tf in df['full_text']],
-                "score" : [s for s in df['score']],
+                'label': [s for s in df['label']],
             })
             
             return ds

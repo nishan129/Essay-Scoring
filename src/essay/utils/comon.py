@@ -23,3 +23,11 @@ def save_model(file_path, model):
             pickle.dump(model,f) 
     except Exception as e:
         raise ModelException(e,sys)
+    
+    
+def load_model(file_path):
+    try:
+        with open(file_path, "rb") as file:
+            return pickle.load(file)
+    except Exception as e:
+        raise ModelException(e,sys)

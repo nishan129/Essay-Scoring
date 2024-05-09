@@ -40,3 +40,24 @@ class DataTransformationConfig:
         self.train_transform_data: str = os.path.join(self.data_transformation_dir,TRAIN_TRANSFORM_DATA)
         self.test_trainsform_data: str = os.path.join(self.data_transformation_dir,TEST_TRANSFORM_DATA)
         self.data_transformed_data_dir: str = os.path.join(self.data_transformation_dir,DATA_TRANSFOMRED_DATA_DIR_NAME,TOKENIZER_NAME)
+        
+        
+@dataclass
+class ModelTrainerConfig:
+    def __init__(self, training_pipeline_config: TrainingPipelineConfig):
+        self.training_pipeline_config = training_pipeline_config
+        self.model_trainer_dir :str = os.path.join(self.training_pipeline_config.artifact_dir,MODEL_TRAINER_DIR_NAME)
+        self.train_model_path : str= os.path.join(self.model_trainer_dir,MODEL_NAM)
+        
+@dataclass      
+class CGF:
+    n_splits = 5
+    seed = 42
+    max_length = 1024
+    lr = 1 #1e-5
+    train_batch_size = 1
+    eval_batch_size = 1
+    train_epochs = 4
+    weight_decay = 0.01
+    warmup_ratio = 0.0
+    num_labels = 6

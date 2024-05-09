@@ -28,8 +28,12 @@ class DataTransformation:
         logging.info("Enter the data transformation class")
         try:
             train_df = pd.read_csv(self.data_ingestion_artifact.training_file_path)
-            test_df = pd.read_csv(self.data_ingestion_artifact.test_file_path)
+            train_df['label'] = train_df['score'].apply(lambda x: x-1)
+            train_df['label'] = train_df['label'].astype('float32')
             
+            test_df = pd.read_csv(self.data_ingestion_artifact.test_file_path)
+            test_df['label'] = test_df['score'].apply(lambda x: x-1)
+            test_df['label'] = test_df['label'].astype('float32')
             tokenizer = AutoTokenizer.from_pretrained("microsoft/deberta-v3-large")
             tokenizer.add_tokens([AddedToken("\n", normalized=False)])
             tokenizer.add_tokens([AddedToken(" "*2, normalized=False)])

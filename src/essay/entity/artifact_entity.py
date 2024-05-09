@@ -18,3 +18,7 @@ class DataTransformationArtifact:
     train_data_path: Path
     test_data_path: Path
     tokenizer_file_path: Path
+    
+@dataclass
+class ModelTrainerArtifact:
+    train_model_path: Path

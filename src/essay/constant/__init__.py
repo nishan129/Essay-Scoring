@@ -13,10 +13,10 @@ TOKENIZER_NAME = "tokenizer.pkl"
 TRAIN_TRANSFORM_DATA = "train"
 TEST_TRANSFORM_DATA = "test"
 
+MODEL_NAM: str = "deberta-v3-small.h5"
 
 
-
-MODEL_NAME: str = "microsoft/deberta-v3-large"
+MODEL_NAME: str ="microsoft/deberta-v3-xsmall"  #"microsoft/deberta-v3-small"  #"microsoft/deberta-v3-large"
 
 """
 Data ingestion type constant created with constant var name
@@ -41,3 +41,9 @@ Data Transformation type constant created with constant var name
 """
 DATA_TRANSFORMATION_DIR_NAME: str = "data_transformation"
 DATA_TRANSFOMRED_DATA_DIR_NAME: str = "trasformed_data"
+
+
+"""
+Model Trainer type constant created with constant var name
+"""
+MODEL_TRAINER_DIR_NAME : str = "train_model"
