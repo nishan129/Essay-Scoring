@@ -10,11 +10,14 @@ matplotlib
 Seaborn
 datasets
 sentencepiece
-[torch]
+tensorflow[torch]
 transformers[sentencepiece]
-tensorflow
+
 # quanto
 # pefttransformers
 # git+https://github.com/huggingface/transformers
 tf-keras
+fastapi==0.78.0
+uvicorn==0.18.3
+Jinja2==3.1.2
 -e .
